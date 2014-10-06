@@ -1,4 +1,4 @@
 PetweenS
 ========
 
-proffesor and Student shares PPT
+proffessor and Student shares PPT
