@@ -10,10 +10,15 @@
 </resultMap>
 -->
   <insert id="insertRoomInfo" parameterType="petweens.model.RoomInfo">
-  	INSERT INTO roominfo(roomname,roomowner,ispasswd,password,path,filename,endpage) values(#{roomname},#{roomowner},#{ispasswd},#{password},#{path},#{filename},#{endpage})
+  	INSERT INTO roominfo(userid,roomname,ispasswd,password,path,filename,endpage) values(#{userid},#{roomname},#{ispasswd},#{password},#{path},#{filename},#{endpage})
   </insert>
   
-   <select id="getRoomInfo" resultType="petweens.model.RoomInfo">
-   SELECT id,roomname,roomowner,ispasswd,password,filename,endpage FROM roominfo
+   <select id="getRoomInfoByPath" parameterType="String" resultType="petweens.model.RoomInfo">
+   SELECT * FROM roominfo WHERE path=#{path}
   </select>
+  
+  <select id="getRoomInfoById" parameterType="int" resultType="petweens.model.RoomInfo">
+   SELECT * FROM roominfo WHERE roomid=#{roomId}
+  </select>
+  
 </mapper>

@@ -1,0 +1,19 @@
+.slide-img{
+	display: none;
+}
+#wrap{
+	width: 100%;
+	height: 100%;
+}
+#slideShow{
+	float: left;
+	width: 70%;
+	height: 70%;
+}
+html, body { 
+	width:100%; 
+	height:100%; 
+}
+#linebox{
+	padding: 2px;
+}

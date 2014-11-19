@@ -2,10 +2,8 @@ package petweens.util;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
@@ -26,7 +24,6 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 public class PPTtoImageConverter {
 	public static final int SCALE = 1;
 	public static final String IMGTYPE="png";
-	//original은 전체경로   savePath는 중간 path
 	public static int convert(String path,String filename) throws IOException{
 		String fullPath = path+"/"+filename;
 		String type = checkType(fullPath);
@@ -107,15 +104,7 @@ public class PPTtoImageConverter {
 		if(folder.isDirectory())FileHandleUtil.deleteDirectoryALL(folder);
 		folder.mkdir();
 		
-		/*
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        InputStream is = new FileInputStream("src/main/resources/font/malgunbd.ttf");
-        Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-        is.close();
-        ge.registerFont(font);  
-        */
 
-		
 		for(int i=0;i<slide.length;i++){
 			BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			Graphics2D graphics = img.createGraphics();

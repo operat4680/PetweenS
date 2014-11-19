@@ -10,13 +10,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import petweens.mapper.RoomMapper;
+import petweens.model.ImageFile;
 import petweens.model.RoomInfo;
 import petweens.util.FileHandleUtil;
-import petweens.util.KeyGenUtil;
 import petweens.util.PPTtoImageConverter;
+import petweens.util.PasswordUtil;
 
 @Service(value = "RoomService")
 public class RoomService {
+	
+	@Value("${file.rootpath}")
+	private String IMAGE_DIR;
 	
 	@Resource(name = "roomMapper")
 	private RoomMapper roomMapper;
@@ -24,20 +28,39 @@ public class RoomService {
 	@Value("${file.rootpath}")
 	private String rootPath;
 	
-	public boolean createRoom(RoomInfo info){
-		String uniqueId = KeyGenUtil.getUniqueID();
+	public String createRoom(RoomInfo info){
+		String uniqueId = PasswordUtil.getUniqueID();
 		String fileName = info.getFile().getOriginalFilename();
-		info.setFilename(fileName);
-		info.setPath(uniqueId);
-		if(fileUpload(info)){
-			if(generateImage(info)){
-				roomMapper.insertRoomInfo(info);
-				return true;
-			}
+		if(getExtension(fileName).equals("ppt")||getExtension(fileName).equals("pptx")){
+			info.setFilename(fileName);
+			info.setPath(uniqueId);
+			if(fileUpload(info)){
+				if(generateImage(info)){
+					roomMapper.insertRoomInfo(info);
+					return uniqueId;
+				}
+			}	
 		}
-		return false;
+		else{
+			return "fileError";
+		}
+		return "";
+	}
+	public ImageFile getImageFile(String path,String page){
+		File file = new File(IMAGE_DIR+path+"/ppt/"+page+ImageFile.IMG_TYPE);
+		ImageFile imageFile = new ImageFile(file,"image/png");
+		return imageFile;
+		
 	}
 	
+	public int getRoomIdBypath(String path){
+		RoomInfo room = roomMapper.getRoomInfoByPath(path);
+		return room.getRoomid();
+	}
+	public RoomInfo getRoomInfoById(int roomId){
+		RoomInfo room = roomMapper.getRoomInfoById(roomId);
+		return room;
+	}
 	
 	
 	private boolean fileUpload(RoomInfo info){
@@ -65,5 +88,14 @@ public class RoomService {
 			System.out.println("generate Image Fail");
 		}
 		return false;
+	}
+	private String getExtension(String fileName) {
+		int dotPosition = fileName.lastIndexOf('.');
+		
+		if (-1 != dotPosition && fileName.length() - 1 > dotPosition) {
+			return fileName.substring(dotPosition + 1);
+		} else {
+			return "";
+		}
 	}
 }

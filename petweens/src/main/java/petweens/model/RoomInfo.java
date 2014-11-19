@@ -3,8 +3,9 @@ package petweens.model;
 import org.springframework.web.multipart.MultipartFile;
 
 public class RoomInfo {
+	private int roomid;
 	private String roomname;
-	private String roomowner;
+	private int userid;
 	private boolean ispasswd;
 	private String password;
 	private String path;
@@ -25,12 +26,7 @@ public class RoomInfo {
 	public void setRoomname(String roomname) {
 		this.roomname = roomname;
 	}
-	public String getRoomOwner() {
-		return roomowner;
-	}
-	public void setRoomOwner(String roomowner) {
-		this.roomowner = roomowner;
-	}
+
 	public boolean isIspasswd() {
 		return ispasswd;
 	}
@@ -72,6 +68,18 @@ public class RoomInfo {
 	}
 	public void setEndpage(int endpage) {
 		this.endpage = endpage;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public int getRoomid() {
+		return roomid;
+	}
+	public void setRoomid(int roomid) {
+		this.roomid = roomid;
 	}
 	
 	

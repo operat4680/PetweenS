@@ -54,6 +54,13 @@
 	   <version>4.1.1.RELEASE</version>
 	</dependency>
     
+    <!-- AspectJ -->
+    <dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.8.2</version>
+	</dependency>
+    
     <!--  Database -->
     <dependency>
 		<groupId>mysql</groupId>
@@ -78,7 +85,6 @@
 		<artifactId>jackson-databind</artifactId>
 		<version>2.4.3</version>
 	</dependency>
-    
     <dependency>
 		<groupId>org.apache.poi</groupId>
 		<artifactId>poi-scratchpad</artifactId>
@@ -120,13 +126,13 @@
 		<artifactId>jstl</artifactId>
 		<version>1.2</version>
 	</dependency>
+	
 	<!--  Jackson -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-core</artifactId>
 	    <version>2.3.0</version>
 	</dependency>
-	
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-databind</artifactId>
@@ -139,7 +145,6 @@
 		<artifactId>spring-data-redis</artifactId>
 		<version>1.4.1.RELEASE</version>
 	</dependency>
-	
 	<dependency>
 	<groupId>redis.clients</groupId>
 		<artifactId>jedis</artifactId>

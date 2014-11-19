@@ -25,6 +25,5 @@ public class FileHandleUtil {
 			deleteDirectoryALL(file);
 		}
 		file.mkdirs();
-		
 	}
 }

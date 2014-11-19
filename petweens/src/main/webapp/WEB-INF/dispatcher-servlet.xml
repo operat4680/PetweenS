@@ -2,28 +2,36 @@
 <beans:beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:jee="http://www.springframework.org/schema/jee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+				        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+				        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	
+	<!--@Autowired, @Resource, @Required, @PostConsctruct  -->
 	<context:annotation-config />
+	<!--@RequestMapping,@NumberFormat, @DateTimeFormat, @Valid -->
 	<mvc:annotation-driven />
+	<!-- @Component,@Controller -->
 	<context:component-scan base-package="petweens" />
 	
-	 <bean
+	<aop:aspectj-autoproxy/>
+	
+	<bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/" />
         <beans:property name="suffix" value=".jsp" />
     </bean>
+    <!--  resource Mapping -->
     <mvc:resources location="/css/**" mapping="/css/**"/>
 	<mvc:resources location="/image/**" mapping="/image/**"/>
 	<mvc:resources location="/js/**" mapping="/js/**"/>
-
-    <!--  properties -->
+	
+    <!--  properties  @Value-->
 	<beans:bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 	  <beans:property name="locations">
 	    <beans:list>
@@ -31,5 +39,8 @@
 	    </beans:list>
 	  </beans:property>
 	</beans:bean>
+	
+	<!--AOP Bean Mapping -->
+	<bean id="loginAspect" class="petweens.aspect.LoginAspect"></bean>
 	
 </beans:beans>

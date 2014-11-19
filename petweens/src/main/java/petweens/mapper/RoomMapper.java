@@ -10,4 +10,6 @@ import petweens.model.RoomInfo;
 public interface RoomMapper {
 	public void insertRoomInfo(RoomInfo info);
 	public List<RoomInfo> getRoomInfo();
+	public RoomInfo getRoomInfoByPath(String path);
+	public RoomInfo getRoomInfoById(int roomId);
 }

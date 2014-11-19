@@ -22,21 +22,15 @@ public class TestRoomMapper {
 	public void insertRoom(){
 		RoomInfo info = new RoomInfo();
 		info.setRoomName("들어와");
-		info.setRoomOwner("operat4680");
+		info.setUserid(1);
 		info.setPasswd(false);
-		dao.insertRoomInfo(info);
 		
 		RoomInfo info2 = new RoomInfo();
 		info2.setRoomName("들어와");
-		info2.setRoomOwner("operat4680");
+		info2.setUserid(2);
 		info2.setPasswd(true);
 		info2.setPassword("1234");
-		dao.insertRoomInfo(info2);
-		
-		List<RoomInfo> result = dao.getRoomInfo();
-		for(RoomInfo room : result){
-			assertEquals(room.getRoomName(),"들어와");
-		}
+
 	}
 	
 }
