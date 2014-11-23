@@ -30,6 +30,7 @@ public class UserService {
 	}
 	public boolean insertUser(User user) {
 		if(!user.resistValidate())return false;
+		if(isResistedUser(user))return false;
 		String salt = PasswordUtil.createBase64Salt();
 		String hash = PasswordUtil.getHash(user.getPassword(), salt);
 		user.setSalt(salt);

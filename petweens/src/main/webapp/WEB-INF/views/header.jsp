@@ -6,7 +6,7 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<a href="/petweens"><img src="/petweens/image/small_logo.png" align="middle"></a>
+					<a href="/petweens/home"><img src="/petweens/image/small_logo.png" align="middle"></a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav nav-pills navbar-right nav_list" role="tablist">
@@ -28,3 +28,28 @@
 			</div>
 		</nav>
 </div>
+
+<!--
+<div class="header">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<img src="image/small_logo.png" align="middle">
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav nav-pills navbar-right nav_list" role="tablist">
+							<li role="presentation"><a href="#">ê°ì ëª©ë¡</a></li>
+							<li role="presentation"><a href="#">íê¸° ëª©ë¡</a></li>
+							<li class="dropdown" role="presentation">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">account<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">My Page</a></li>
+									<li><a href="#">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+-->

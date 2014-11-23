@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class RoomInfo {
 	private int roomid;
 	private String roomname;
+	private String username;
 	private int userid;
 	private boolean ispasswd;
 	private String password;
@@ -80,6 +81,12 @@ public class RoomInfo {
 	}
 	public void setRoomid(int roomid) {
 		this.roomid = roomid;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	

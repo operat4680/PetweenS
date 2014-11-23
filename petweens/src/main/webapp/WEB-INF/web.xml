@@ -50,6 +50,7 @@
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
+		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 	
 	<resource-ref>
@@ -60,7 +61,7 @@
  	</resource-ref>
  	
  	<welcome-file-list>
-        <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+        <welcome-file>home</welcome-file>
     </welcome-file-list>
 </web-app>
 

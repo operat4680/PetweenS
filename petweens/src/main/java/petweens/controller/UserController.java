@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import petweens.model.User;
 import petweens.service.UserService;
@@ -41,7 +40,7 @@ public class UserController {
 		if(userService.isResistedUser(user)){
 			session.setAttribute("userId", user.getUserid());
 			session.setAttribute("userName", user.getUsername());
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:/home");
 		}
 		else{
 			mv.addObject("error", true);
@@ -52,8 +51,10 @@ public class UserController {
 	}
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public ModelAndView logout(HttpSession session){
+		ModelAndView mv = new ModelAndView();
 		session.invalidate();
-		return new ModelAndView("redircet:/");
+		mv.setViewName("redirect:/home");
+		return mv;
 	}
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
@@ -67,7 +68,6 @@ public class UserController {
 			mv.setViewName("signup");
 		}
 		mv.addObject(user);
-		mv.setViewName("signup");
 		return mv;
 	}
 	
@@ -80,8 +80,5 @@ public class UserController {
 	public @ResponseBody String checkEmail(@RequestParam String email){
 		return !userService.isUserEmailExist(email) ? "true":"false";
 	}
-	/*
-	@RequestMapping(value="/join",method=RequestMethod.POST)
-	public ModelAndView 
-	*/
+
 }

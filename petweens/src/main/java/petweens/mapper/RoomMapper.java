@@ -12,4 +12,5 @@ public interface RoomMapper {
 	public List<RoomInfo> getRoomInfo();
 	public RoomInfo getRoomInfoByPath(String path);
 	public RoomInfo getRoomInfoById(int roomId);
+	public List<RoomInfo> getRoomInfoList();
 }

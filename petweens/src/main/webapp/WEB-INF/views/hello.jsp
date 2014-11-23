@@ -11,36 +11,60 @@
 </head>
 <body>
 	<p id=roomnum>1</p>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
- 	<script type="text/javascript" src="<c:url value="/js/sockjs-0.3.4.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/js/stomp.js"/>"></script>
+	<input type="text" id="question">
+	<script type="text/javascript" src="/petweens/js/jquery-1.11.1.min.js"></script>
+ 	<script type="text/javascript" src="/petweens/js/sockjs-0.3.4.js"></script>
+    <script type="text/javascript" src="/petweens/js/stomp.js"></script>
     <script type="text/javascript">
-    var key='';
+    var path='';
+    var auth='';
     var socket = new SockJS('/petweens/lecture');
     var stompClient = Stomp.over(socket);
     stompClient.connect({},function(frame){
     	stompClient.subscribe('/user/queue/key', function(key){
-            subscribeRoom(key);
+    		var data = JSON.parse(key.body);
+            auth = data['auth'];
+            key = data['key'];
+            
+            if(auth=='student'){
+            	subscribeRoom(key);
+            }
+            else{
+            	subscribeQuestion(key)	
+            }
         });
     	requestKey();
     });
 
     function requestKey(){
     	var data = $('#roomnum').text();
-    	stompClient.send('/app/getkey',{},data);
+    	stompClient.send('/app/getkey');
     }
     function subscribeRoom(room){
-    	stompClient.subscribe('/topic/'+room.body,function(data){
-    		console.log(data+'??');
-    		key=room.body
-    		$('#roomnum').text(data);
+    	stompClient.subscribe('/topic/canvas/'+room,function(data){
+			console.log('canvasData in');
     	});
     }
+    function subscribeQuestion(room){
+    	stompClient.subscribe('/topic/question/'+room,function(data){
+    		//교수에게 질문이 들어왔을때.
+    		$('#roomnum').text(data.body);
+    		console.log('question in');
+    	});
+    }
+    
+    //데이터 전송
     function sendPublish(){
     	stompClient.send('/app/publish',{},'1in');
     }
+    //질문전송
+    function sendQuestion(){
+    	
+    	var text = $('#question').val();
+    	stompClient.send('/app/userQuestion',{},text);
+    }
     </script>
     
-     <button id="sendName" onclick="sendPublish();">Send</button>
+    <button id="sendName" onclick="sendQuestion();">Send</button>
 </body>
 </html>

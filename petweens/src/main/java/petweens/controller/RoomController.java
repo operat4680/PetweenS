@@ -41,23 +41,28 @@ public class RoomController {
 	
 	@RequestMapping(value="{id}")
 	public ModelAndView enterRoom(@PathVariable String id,HttpServletRequest request){
-		ModelAndView mv = new ModelAndView("redircet:/");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/home");
 		int userId=(Integer)session.getAttribute("userId");
 		if(id!=null&&ValidateUtil.isNumeric(id)){
 			int roomId = Integer.parseInt(id);
 			RoomInfo info =roomService.getRoomInfoById(roomId);
-			if(info.isIspasswd()){
-				//TODO passwordCheck
+			if(info!=null){
+				if(info.isIspasswd()){
+					//TODO passwordCheck
+				}
+				mv.addObject("info", info);
+				session.setAttribute("path", info.getPath());
+				if(info.getUserid()==userId){
+					mv.addObject("auth","professor");
+					session.setAttribute("auth","professor");
+				}
+				else{
+					mv.addObject("auth","student");
+					session.setAttribute("auth","student");
+				}
+				mv.setViewName("hello");
 			}
-			mv.addObject("info", info);
-			session.setAttribute("path", info.getPath());
-			if(info.getUserid()==userId){
-				mv.addObject("auth","professor");
-			}
-			else{
-				mv.addObject("auth","student");
-			}
-			mv.setViewName("slideshow");
 		}
 		return mv;
 	}
@@ -71,11 +76,11 @@ public class RoomController {
 	
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	public ModelAndView createRoom(@ModelAttribute RoomInfo info,HttpServletRequest request){
-		ModelAndView mv = new ModelAndView("redirect:/room/generate");
+		ModelAndView mv = new ModelAndView("generate");
 		info.setUserid((Integer)session.getAttribute("userId"));
 		String uniqueKey=roomService.createRoom(info);
 		if(uniqueKey.equals("fileError")){
-			request.setAttribute("fileError", true);
+			mv.addObject("fileError", true);
 		}
 		else if(!uniqueKey.equals("")){
 			int id = roomService.getRoomIdBypath(uniqueKey);

@@ -21,4 +21,8 @@
    SELECT * FROM roominfo WHERE roomid=#{roomId}
   </select>
   
+  <select id="getRoomInfoList" resultType="petweens.model.RoomInfo">
+  SELECT roomid,roomname,username,ispasswd,path FROM roominfo inner join user on roominfo.userid=user.userid order by roominfo.create_at desc;
+  </select>
+  
 </mapper>

@@ -7,16 +7,17 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="/petweens/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/petweens/css/main.css">
-
 	<script src="/petweens/js/jquery-1.11.1.min.js"></script>
 	<script src="/petweens/js/bootstrap.min.js"></script>
+	<script src="/petweens/js/jquery.validate.min.js"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<div id="main_logo">
-		<img src="/petweens/image/logo5.png" align="middle">
-	</div>
+
 	<div  class="wrap">
+		<jsp:include page="header.jsp"></jsp:include>
+		<div id="main_logo">
+			<img src="/petweens/image/logo5.png" align="middle">
+		</div>
 		<c:if test="${error==true}">
 			 <div class="alert alert-danger" role="alert">
 				  

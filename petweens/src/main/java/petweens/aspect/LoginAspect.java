@@ -29,14 +29,15 @@ public class LoginAspect {
 	
 	@Around("sign()")
 	public Object aleadyLoginCheck(ProceedingJoinPoint joinPoint) throws Throwable{
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/home");
 		HttpSession session = getSession(joinPoint);
 		if(session.getAttribute("userId")==null){
 			return (ModelAndView)joinPoint.proceed();
 		}
 		return mv;
 	}
-	
+
 	private HttpSession getSession(ProceedingJoinPoint join){
 		HttpServletRequest request = null;
 		Object[] obj = join.getArgs();

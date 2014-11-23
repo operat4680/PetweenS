@@ -2,6 +2,7 @@ package petweens.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -97,5 +98,9 @@ public class RoomService {
 		} else {
 			return "";
 		}
+	}
+	public List<RoomInfo> getRoomInfoList() {
+		List<RoomInfo> list = roomMapper.getRoomInfoList();
+		return list;
 	}
 }

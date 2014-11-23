@@ -19,6 +19,8 @@
 	<!-- @Component,@Controller -->
 	<context:component-scan base-package="petweens" />
 	
+	<mvc:default-servlet-handler />
+	
 	<aop:aspectj-autoproxy/>
 	
 	<bean
@@ -30,6 +32,7 @@
     <mvc:resources location="/css/**" mapping="/css/**"/>
 	<mvc:resources location="/image/**" mapping="/image/**"/>
 	<mvc:resources location="/js/**" mapping="/js/**"/>
+	<mvc:resources location="/fonts/**" mapping="/fonts/**"/>
 	
     <!--  properties  @Value-->
 	<beans:bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">

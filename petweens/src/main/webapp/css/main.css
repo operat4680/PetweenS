@@ -2,7 +2,7 @@ body{
 	width:100%;
 }
 #main_logo{
-	width: 1200px;
+	width: 60%;
 	margin: 200px auto 100px auto;
 	text-align:center;
 }
@@ -10,9 +10,14 @@ body{
 	margin: 10px auto 0 auto;
 	text-align:center;
 }
+.header nav{
+	width: 100%;
+}
 .wrap{
-	width: 60%;
-	margin: 0 auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1200px;
 }
 .login_input{
 	padding-top: 15px;
@@ -28,6 +33,10 @@ body{
 	float:left;
 	margin: 0 3px;
 }
+.join_button{ 
+	width: 100%; 
+	margin: 0 3px; 
+}
 
 .nav_list{
 	margin-top: 10px;
@@ -37,4 +46,7 @@ body{
 	width: 194px;
 	float:right;
 	margin: 0 3px;
+}
+.my-error-class {
+    color:#FF0000;  /* red */
 }

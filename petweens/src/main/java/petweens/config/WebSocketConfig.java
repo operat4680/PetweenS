@@ -16,7 +16,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/lecture").withSockJS();
+		registry.addEndpoint("/lecture").withSockJS().setInterceptors(new HttpSessionHandshakeInterceptor());
 	}
 
 	@Override
