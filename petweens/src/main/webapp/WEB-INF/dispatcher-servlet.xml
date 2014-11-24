@@ -46,4 +46,9 @@
 	<!--AOP Bean Mapping -->
 	<bean id="loginAspect" class="petweens.aspect.LoginAspect"></bean>
 	
+	<beans:bean id="presenceEventListener"
+        class="petweens.config.PresenceEventListener">
+    </beans:bean>
+
+	
 </beans:beans>

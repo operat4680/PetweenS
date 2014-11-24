@@ -15,13 +15,23 @@
     </beans:bean>
     
     <beans:bean id="objectMapper"
-        class="com.fasterxml.jackson.databind.ObjectMapper">
+        class="org.codehaus.jackson.map.ObjectMapper">
     </beans:bean>
+    
+    
     <!-- MultipartResolver-->
     <beans:bean id="multipartResolver" 
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<beans:property name="maxUploadSize" value="52428800" />
 	</beans:bean>
 	
+	<bean id="jedisConnectinFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+	    <property name="hostName" value="localhost" />
+	    <property name="port" value="6379" />
+	    <property name="usePool" value="true" />
+	</bean>
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+   	 	<property name="connectionFactory" ref="jedisConnectinFactory" />
+	</bean>
 
 </beans:beans>

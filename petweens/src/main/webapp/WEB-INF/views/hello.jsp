@@ -42,7 +42,15 @@
     }
     function subscribeRoom(room){
     	stompClient.subscribe('/topic/canvas/'+room,function(data){
-			console.log('canvasData in');
+			//canvas Data in
+    	});
+    	stompClient.subscribe('/topic/enter/'+room,function(data){
+    		if(data.body=='in'){
+    			console.log('professor in');
+    		}
+    		else{
+    			console.log('professor out');
+    		}
     	});
     }
     function subscribeQuestion(room){
@@ -54,8 +62,8 @@
     }
     
     //데이터 전송
-    function sendPublish(){
-    	stompClient.send('/app/publish',{},'1in');
+    function sendCanvasData(data){
+    	stompClient.send('/app/cavasdata',{},data);
     }
     //질문전송
     function sendQuestion(){

@@ -28,9 +28,6 @@ public class RoomController {
 	@Resource(name="imageView") 
 	private ImageView imageView;
 	
-	@Autowired
-	private HttpSession session;
-	
 	/*
 	public ModelAndView generateRoom(@ModelAttribute RoomInfo info){
 		String roomOwner="test";
@@ -43,6 +40,7 @@ public class RoomController {
 	public ModelAndView enterRoom(@PathVariable String id,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/home");
+		HttpSession session= request.getSession();
 		int userId=(Integer)session.getAttribute("userId");
 		if(id!=null&&ValidateUtil.isNumeric(id)){
 			int roomId = Integer.parseInt(id);
@@ -61,7 +59,7 @@ public class RoomController {
 					mv.addObject("auth","student");
 					session.setAttribute("auth","student");
 				}
-				mv.setViewName("hello");
+				mv.setViewName("slideshow");
 			}
 		}
 		return mv;
@@ -77,6 +75,7 @@ public class RoomController {
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	public ModelAndView createRoom(@ModelAttribute RoomInfo info,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("generate");
+		HttpSession session = request.getSession();
 		info.setUserid((Integer)session.getAttribute("userId"));
 		String uniqueKey=roomService.createRoom(info);
 		if(uniqueKey.equals("fileError")){

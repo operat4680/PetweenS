@@ -135,7 +135,7 @@
         outgoing: 10000,
         incoming: 10000
       };
-      this.maxWebSocketFrameSize = 16 * 1024;
+      this.maxWebSocketFrameSize = 1024 * 1024;
       this.subscriptions = {};
       this.partialData = '';
     }

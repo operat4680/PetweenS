@@ -10,15 +10,17 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
+import petweens.service.RedisService;
+
 public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor{
 
+	
 	public boolean beforeHandshake(ServerHttpRequest request,
 			ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
 		if (request instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
             HttpSession session = servletRequest.getServletRequest().getSession(false);
-            System.out.println("inHandshake");
             if (session.getAttribute("path")!=null&&session.getAttribute("auth")!=null) {
                 attributes.put("path",session.getAttribute("path"));
                 attributes.put("auth",session.getAttribute("auth"));

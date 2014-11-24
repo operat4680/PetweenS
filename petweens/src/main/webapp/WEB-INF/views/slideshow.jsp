@@ -11,6 +11,8 @@
 <script type="text/javascript" src="/petweens/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/petweens/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/petweens/js/screenfull.js"></script>
+<script type="text/javascript" src="/petweens/js/sockjs-0.3.4.js"></script>
+<script type="text/javascript" src="/petweens/js/stomp.js"></script>
 <body>
 	<div class = "wrap" >
 		<jsp:include page="header.jsp"></jsp:include>
@@ -78,21 +80,24 @@
 				</div>
 			</div>
 			<div id="right_wrap" class="jumbotron ">
+				<input id="who" type="hidden" data-value="${auth}"/>	
 				<c:choose>
 					<c:when test="${auth eq 'student'}">	
-						<button id="optionBtn" type="button" class="btn btn-primary">강의 중인 슬라이드</button>
+						<button id="optionBtn" type="button" class="btn btn-primary" data-toggle="popover"  title="강의모드가 아닙니다."
+									data-content="현재 강의 중인 슬라이드로 돌아가시려면 클릭하세요." >강의 중인 슬라이드</button>
 						<div id = "writingContainer" class="panel panel-success">
 							<div class="panel-heading">
-								<h3 class="panel-title">Writing</h3>
+								Writing
+								<button type="button" class="btn btn-success panel-btn">저장</button>
 							</div>
 							<div class="panel-body">
 								<textarea id="writeArea" class="form-control" rows="15"></textarea>
 							</div>
 						</div>
-		
 						<div id="questionContainer" class="panel panel-danger">
 							<div class="panel-heading">
-								<h3 class="panel-title">Question</h3>
+								Question
+								<button type="button" class="btn btn-danger panel-btn">보내기</button>
 							</div>
 							<div class="panel-body">
 								<textarea id="questionArea"class="form-control" rows="4"></textarea>
