@@ -18,11 +18,15 @@
   </select>
   
   <select id="getRoomInfoById" parameterType="int" resultType="petweens.model.RoomInfo">
-   SELECT * FROM roominfo WHERE roomid=#{roomId}
+   SELECT roominfo.userid,roomname,username,ispasswd,path,roominfo.password,endpage FROM roominfo inner join user on roominfo.userid=user.userid WHERE roomid=#{roomId}
   </select>
   
   <select id="getRoomInfoList" resultType="petweens.model.RoomInfo">
-  SELECT roomid,roomname,username,ispasswd,path FROM roominfo inner join user on roominfo.userid=user.userid order by roominfo.create_at desc;
+  SELECT roomid,roomname,username,ispasswd,path,roominfo.userid FROM roominfo inner join user on roominfo.userid=user.userid order by roominfo.create_at desc;
   </select>
+  
+  <delete id="deleteRoom" parameterType="map">
+  DELETE FROM roominfo where roomid=#{roomid} AND userid=#{userid}
+  </delete>
   
 </mapper>

@@ -47,7 +47,10 @@ public class RoomController {
 			RoomInfo info =roomService.getRoomInfoById(roomId);
 			if(info!=null){
 				if(info.isIspasswd()){
-					//TODO passwordCheck
+					String password = request.getParameter("password");
+					if(password==null||!info.getPassword().equals(password)){
+						return mv;
+					}
 				}
 				mv.addObject("info", info);
 				session.setAttribute("path", info.getPath());
@@ -65,6 +68,14 @@ public class RoomController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/delete/{id}")
+	public ModelAndView deleteRoom(@PathVariable int id,HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		mv.setViewName("redirect:/home");
+		roomService.deleteRoom(id,(Integer)session.getAttribute("userId"));
+		return mv;
+	}
 	@RequestMapping(value="/image/{path}/{page}")
 	public ImageView getImage(@PathVariable String path,@PathVariable String page,ModelMap modelMap){
 			ImageFile imageFile = roomService.getImageFile(path, page);

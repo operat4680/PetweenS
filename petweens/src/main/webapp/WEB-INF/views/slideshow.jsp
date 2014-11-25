@@ -13,9 +13,16 @@
 <script type="text/javascript" src="/petweens/js/screenfull.js"></script>
 <script type="text/javascript" src="/petweens/js/sockjs-0.3.4.js"></script>
 <script type="text/javascript" src="/petweens/js/stomp.js"></script>
+
 <body>
 	<div class = "wrap" >
 		<jsp:include page="header.jsp"></jsp:include>
+		<div id="lecture_header">
+			<div id="lecture_info">
+				<h2> ${info.roomname}</h2><h2><small>- ${info.username} </small></h2>
+				<h4 class="lecture_page"> / ${info.endpage} </h4><h4 id="page" class="lecture_page">1</h4>
+			</div>
+		</div>
 		<div class="section">
 			<div id = "slide-container">
 				<div id = "slideShow">
@@ -94,10 +101,10 @@
 								<textarea id="writeArea" class="form-control" rows="15"></textarea>
 							</div>
 						</div>
-						<div id="questionContainer" class="panel panel-danger">
+						<div id="questionContainer" class="panel panel-info">
 							<div class="panel-heading">
 								Question
-								<button type="button" class="btn btn-danger panel-btn">보내기</button>
+								<button id="sendQuestion" type="button" class="btn btn-info panel-btn">보내기</button>
 							</div>
 							<div class="panel-body">
 								<textarea id="questionArea"class="form-control" rows="4"></textarea>
@@ -110,16 +117,7 @@
 								<h3 class="panel-title">Question List</h3>
 							</div>
 							<div id = "questionList" class="panel-body">
-								<div class="alert alert-warning" role="alert">dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
-								<div class="alert alert-warning" role="alert">...</div>
+								
 							</div>
 						</div>
 					</c:otherwise>

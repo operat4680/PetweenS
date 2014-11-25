@@ -15,7 +15,7 @@
     </beans:bean>
     
     <beans:bean id="objectMapper"
-        class="org.codehaus.jackson.map.ObjectMapper">
+        class="com.fasterxml.jackson.databind.ObjectMapper">
     </beans:bean>
     
     

@@ -40,7 +40,8 @@ public class PresenceEventListener implements ApplicationListener<ApplicationEve
 		String auth = (String)header.getSessionAttributes().get("auth");
 		String path = (String)header.getSessionAttributes().get("path");
 		if(auth.equals("professor")){
-			service.enterProfessor(path);
+			if(text.equals("in"))service.enterProfessor(path);
+			else service.outProFessor(path);
 			template.convertAndSend("/topic/enter/"+path,text);
 		}
 		else{

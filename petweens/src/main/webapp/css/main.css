@@ -1,6 +1,33 @@
 body{
 	width:100%;
 }
+.caption{
+   height: 26px;
+}
+.caption h3{
+   width : 220px;
+   text-overflow: ellipsis; 
+   white-space: nowrap; 
+   overflow: hidden;
+   margin-bottom: 0;
+   float:left;
+   margin-top:0px;
+}
+#caption_name{
+   margin-top: 7px;
+}
+.caption button{
+   float: left;
+}
+
+
+.navbar-nav>li>a{
+   padding-top:15px;
+   padding-bottom: 15px;
+}
+.navbar-btn {
+   margin: 0px;
+}
 #main_logo{
 	width: 60%;
 	margin: 200px auto 100px auto;

@@ -54,6 +54,7 @@
 	        rules: {
 	            username: {
 	                minlength: 2,
+	                maxlength:20,
 	                required: true,
 	                alphanumeric: true,
 	                remote:{

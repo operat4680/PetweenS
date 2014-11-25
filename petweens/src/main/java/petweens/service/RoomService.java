@@ -103,4 +103,8 @@ public class RoomService {
 		List<RoomInfo> list = roomMapper.getRoomInfoList();
 		return list;
 	}
+	public void deleteRoom(int roomid, Integer userid) {
+		roomMapper.deleteRoom(roomid,(int)userid);
+		
+	}
 }

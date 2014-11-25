@@ -100,6 +100,7 @@ $(function(){
         rules: {
             roomname: {
                 minlength: 2,
+                maxlength: 15,
                 required: true
             },
             file: {

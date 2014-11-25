@@ -8,7 +8,25 @@ body{
 	width: 100%;
 	height: 630px;
 }
-
+#lecture_header{
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	width: 100%;
+	height : 50px;
+}
+#lecture_header h2{
+	margin : 0px;
+	display: inline-block;
+}
+#lecture_info{
+	width: 70%;
+	float: left;
+}
+.lecture_page{
+	float: right;
+}
 #slide-container{
 	float: left;
 	width: 70%;

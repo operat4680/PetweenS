@@ -2,6 +2,7 @@ package petweens.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import petweens.model.RoomInfo;
@@ -13,4 +14,5 @@ public interface RoomMapper {
 	public RoomInfo getRoomInfoByPath(String path);
 	public RoomInfo getRoomInfoById(int roomId);
 	public List<RoomInfo> getRoomInfoList();
+	public void deleteRoom(@Param("roomid") int roomid,@Param("userid") int userid);
 }

@@ -3,11 +3,14 @@ package petweens.service;
 import java.io.IOException;
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Service(value = "RedisService")
 public class RedisService {
@@ -38,6 +41,7 @@ public class RedisService {
 	}
 	public void setCanvasData(String key,int page,String data){
 		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<String>(String.class));
+		if(data!=null)
 		redisTemplate.opsForHash().put(key+":"+CANVASDATA,page,data);
 	}
 	public String getCanvasDataByPage(String key,int page){
@@ -46,7 +50,7 @@ public class RedisService {
 		if(data==null)return "";
 		return data;
 	}
-	public String getCanvasDataAll(String key) throws IOException{
+	public String getCanvasDataAll(String key) throws JsonProcessingException{
 		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<String>(String.class));
 		Map<Object,Object> map = redisTemplate.opsForHash().entries(key+":"+CANVASDATA);
 		if(map==null)return "";
@@ -56,19 +60,21 @@ public class RedisService {
 	
 	
 	public void setCurrentPage(String key,int page){
-		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<Integer>(Integer.class));
+		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<String>(String.class));
 		redisTemplate.opsForHash().put(key, CURRENTPAGE,page);
 	}
 	public int getCurrentPage(String key){
-		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<Integer>(Integer.class));
-		Integer page = (Integer)redisTemplate.opsForHash().get(key, CURRENTPAGE);
+		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<String>(String.class));
+		String page = (String)redisTemplate.opsForHash().get(key, CURRENTPAGE);
 		if(page==null)return 0;
-		return page;
+		return Integer.parseInt(page);
 	}
 	public void enterProfessor(String key){
+		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<String>(String.class));
 		redisTemplate.opsForHash().put(key, PROFESSOR,"enter");
 	}
 	public void outProFessor(String key){
+		redisTemplate.setHashValueSerializer(new GenericToStringSerializer<String>(String.class));
 		redisTemplate.opsForHash().put(key, PROFESSOR,"out");
 	}
 

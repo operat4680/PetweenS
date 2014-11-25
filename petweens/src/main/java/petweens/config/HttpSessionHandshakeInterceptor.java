@@ -24,6 +24,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor{
             if (session.getAttribute("path")!=null&&session.getAttribute("auth")!=null) {
                 attributes.put("path",session.getAttribute("path"));
                 attributes.put("auth",session.getAttribute("auth"));
+                attributes.put("userName",session.getAttribute("userName"));
                 return true;
             }
         }
