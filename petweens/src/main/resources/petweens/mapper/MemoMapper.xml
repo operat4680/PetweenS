@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="petweens.mapper.MemoMapper">
+
+  <insert id="insertMemo" parameterType="map">
+  insert memo(roomid,userid,memo) values(#{roomid},#{userid},#{memo}) ON DUPLICATE KEY UPDATE memo=VALUES(memo);
+  </insert>
+  <select id="getMemoById" parameterType="map" resultType="String">
+  select memo.memo from memo where roomid=#{roomid} AND userid=#{userid}
+  </select>
+  <select id="getMemoList" parameterType="int" resultType="petweens.model.MemoData">
+  	select memo.roomid,roomname,memo FROM memo INNER JOIN roominfo on roominfo.roomid=memo.roomid WHERE memo.userid=#{userid} order by memo.create_at desc;
+  </select>
+</mapper>

@@ -7,12 +7,14 @@
 <link rel="stylesheet" type="text/css" href="/petweens/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/petweens/css/main.css">
 <link rel="stylesheet" type="text/css" href="/petweens/css/slide.css">
+<link rel="stylesheet" type="text/css" href="/petweens/css/sweet-alert.css">
 <script type="text/javascript" src="/petweens/js/fabric.js"></script>
 <script type="text/javascript" src="/petweens/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/petweens/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/petweens/js/screenfull.js"></script>
 <script type="text/javascript" src="/petweens/js/sockjs-0.3.4.js"></script>
 <script type="text/javascript" src="/petweens/js/stomp.js"></script>
+<script type="text/javascript" src="/petweens/js/sweet-alert.min.js"></script>
 
 <body>
 	<div class = "wrap" >
@@ -95,10 +97,10 @@
 						<div id = "writingContainer" class="panel panel-success">
 							<div class="panel-heading">
 								Writing
-								<button type="button" class="btn btn-success panel-btn">저장</button>
+								<button type="button" id="memosave" class="btn btn-success panel-btn">저장</button>
 							</div>
 							<div class="panel-body">
-								<textarea id="writeArea" class="form-control" rows="15"></textarea>
+								<textarea id="writeArea" class="form-control" rows="15">${memo}</textarea>
 							</div>
 						</div>
 						<div id="questionContainer" class="panel panel-info">

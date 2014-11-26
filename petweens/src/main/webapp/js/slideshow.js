@@ -109,7 +109,6 @@ $(function() {
 
 	changeBackgroundImage = function(){
 		canvas.clear();
-		console.log('in');
 		if(drawObjectArray[currentPage]!=undefined){
 			drawPage(currentPage);
 		}
@@ -180,7 +179,6 @@ $(function() {
 		widthCanvasScale = 1;
 		heightCanvasScale =1;
 		if(isprofessor==1&&control==1){
-			console.log('imcontrol');
 			savePage(professorPage);
 		}
 	};
@@ -360,7 +358,6 @@ $(function() {
     	stompClient.subscribe('/topic/status/'+room,function(data){
     		var stat = data.body;
     		if(stat=='in'){
-    			console.log("allData");
     			professorIn();
     		}
     		else{
@@ -438,6 +435,23 @@ $(function() {
     $('#sendQuestion').click(function(){
     	sendQuestion();
     })
+    $('#memosave').click(function(){
+    	var text =  $('#writeArea').val();
+    	if(text!=null&&$.trim(text)!=""){
+    		  $.ajax({      
+    		        type:"POST",  
+    		        url:"/petweens/room/saveMemo",      
+    		        data:{memo:text},      
+    		        success:function(args){   
+    		        	swal({title : "Writing",text: "Save",type : "success"});      
+    		        },   
+    		        error:function(e){  
+    		        	swal({title : "Writing",text: "Fail",type : "error"});
+    		        }  
+    		 });  
+    		
+    	}
+    });
 	
 });
 

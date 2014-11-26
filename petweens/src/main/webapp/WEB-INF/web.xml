@@ -73,5 +73,12 @@
  	<welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+    <error-page>
+    	<error-code>500</error-code>
+    	<location>/WEB-INF/views/500error.jsp</location>
+    </error-page>
+    <session-config>
+        <session-timeout>1500</session-timeout>
+	</session-config>
 </web-app>
 

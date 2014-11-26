@@ -80,5 +80,6 @@ public class UserController {
 	public @ResponseBody String checkEmail(@RequestParam String email){
 		return !userService.isUserEmailExist(email) ? "true":"false";
 	}
+	
 
 }

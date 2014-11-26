@@ -2,13 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="petweens.mapper.RoomMapper">
-<!--  
-  <resultMap id="empResult" type="">
-	<result property="id" column="id" />
-	<result property="name" column="name" />
-	<result property="role" column="role" />
-</resultMap>
--->
   <insert id="insertRoomInfo" parameterType="petweens.model.RoomInfo">
   	INSERT INTO roominfo(userid,roomname,ispasswd,password,path,filename,endpage) values(#{userid},#{roomname},#{ispasswd},#{password},#{path},#{filename},#{endpage})
   </insert>
@@ -18,7 +11,7 @@
   </select>
   
   <select id="getRoomInfoById" parameterType="int" resultType="petweens.model.RoomInfo">
-   SELECT roominfo.userid,roomname,username,ispasswd,path,roominfo.password,endpage FROM roominfo inner join user on roominfo.userid=user.userid WHERE roomid=#{roomId}
+   SELECT roomid,roominfo.userid,roomname,username,ispasswd,path,roominfo.password,endpage FROM roominfo inner join user on roominfo.userid=user.userid WHERE roomid=#{roomId}
   </select>
   
   <select id="getRoomInfoList" resultType="petweens.model.RoomInfo">

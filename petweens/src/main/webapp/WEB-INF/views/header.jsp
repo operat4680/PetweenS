@@ -12,7 +12,7 @@
 					<ul class="nav navbar-nav navbar-right nav_list" role="tablist">
 						<li role="presentation"><a href="/petweens/room/generate">방 만들기</a></li>
 						<li role="presentation"><a href="/petweens/home">강의 목록</a></li>
-						<li role="presentation"><a href="#">필기 목록</a></li>
+						<li role="presentation"><a href="/petweens/room/memo">필기 목록</a></li>
 						<li role="presentation"><p class="navbar-text"><c:out value='${sessionScope["userName"]}'/></p></li>
 						<c:choose>
 							<c:when test="${empty sessionScope['userName']}">

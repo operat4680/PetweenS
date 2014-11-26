@@ -12,8 +12,6 @@
 
 </head>
 <body>
-
-
 	<div  class="wrap">
 		<jsp:include page="header.jsp"></jsp:include>
 		<div id="main_logo">
@@ -43,7 +41,6 @@
 		</form>
 	</div>
 	<script type="text/javascript">
-	
 	$(document).ready(function () {
 
 		jQuery.validator.addMethod("alphanumeric", function(value, element) {

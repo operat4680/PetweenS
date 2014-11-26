@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import petweens.mapper.MemoMapper;
 import petweens.mapper.RoomMapper;
 import petweens.model.ImageFile;
+import petweens.model.MemoData;
 import petweens.model.RoomInfo;
 import petweens.util.FileHandleUtil;
 import petweens.util.PPTtoImageConverter;
@@ -26,8 +28,21 @@ public class RoomService {
 	@Resource(name = "roomMapper")
 	private RoomMapper roomMapper;
 	
+	@Resource(name = "memoMapper")
+	private MemoMapper memoMapper;
+	
 	@Value("${file.rootpath}")
 	private String rootPath;
+	
+	
+	public void insertMemo(int roomid,int userid,String memo){
+		memoMapper.insertMemo(roomid, userid, memo);
+	}
+	public String getMemoById(int roomid,int userid){
+		String memo = memoMapper.getMemoById(roomid, userid);
+		if(memo==null)return "";
+		return memo;
+	}
 	
 	public String createRoom(RoomInfo info){
 		String uniqueId = PasswordUtil.getUniqueID();
@@ -106,5 +121,8 @@ public class RoomService {
 	public void deleteRoom(int roomid, Integer userid) {
 		roomMapper.deleteRoom(roomid,(int)userid);
 		
+	}
+	public List<MemoData> getMemoList(int userid) {
+		return memoMapper.getMemoList(userid);
 	}
 }

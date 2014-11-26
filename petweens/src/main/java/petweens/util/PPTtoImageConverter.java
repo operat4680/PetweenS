@@ -2,6 +2,7 @@ package petweens.util;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -65,6 +66,7 @@ public class PPTtoImageConverter {
 			for(int i=0;i<slide.length;i++){
 				BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 				Graphics2D graphics = img.createGraphics();
+				
 				// default rendering options
 				graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
@@ -109,11 +111,12 @@ public class PPTtoImageConverter {
 			BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			Graphics2D graphics = img.createGraphics();
 			// default rendering options
+			graphics.setFont(new Font("굴림",  Font.PLAIN, 20));
 			graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 			graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			graphics.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
-
+			
 			//clear the drawing area
 			graphics.setColor(Color.white);
 			graphics.clearRect(0, 0, width, height);
