@@ -98,7 +98,7 @@ $(function() {
 	$("#slide_list a").click(function(){
 		var array = $(this).children("img");
 		var img = array[0];
-		savePage(currentPage);
+		if(auth=='professor')savePage(currentPage);
 		currentPage = img.getAttribute("alt") -1;
 		backImg = imgArray[currentPage];
 		remoteOut();
@@ -258,7 +258,7 @@ $(function() {
 				objects[i].selectable=false;
 			}
 		}
-
+		
 		var temp = canvas.toObject();
 		temp['objects']=drawObjectArray[page];
 		temp['backgroundImage']='';
@@ -350,7 +350,6 @@ $(function() {
     		if(screenfull.isFullscreen&&professorPage!=dataArray['currentPage']){savePage(professorPage);}
     		professorPage = dataArray['currentPage'];
     		drawObjectArray[professorPage]=dataArray['canvasData'];
-
     		if(control==1){
     			drawPage(professorPage);	
     		}
